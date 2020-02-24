@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Sign</title>
+    <link rel="Shortcut Icon" href="../images/cube.ico" />
+    <link rel="stylesheet" href="../CSS/sign.css" />
+    <script src="../JS/signIn.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="bt">欢迎来到魔方世界</div>
+      <div id="sign">
+        <form action="" id="myForm" method="post" onsubmit="checkSubmit()">
+          <table id="myTable">
+            <tr>
+              <td>
+                <label for="userName">用户名：</label>
+              </td>
+              <td>
+                <input type="text" id="userName" required="true"
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="password">密码：</label>
+              </td>
+              <td>
+                <input type="password" id="password" required="true" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <input
+                  type="submit"
+                  value="登录"
+                  id="mySubmit"
+                  onclick="signIn()"
+                />
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

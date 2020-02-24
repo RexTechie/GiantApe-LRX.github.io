@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>三阶盲拧</title>
+    <link rel="stylesheet" href="../CSS/nav_header.css">
+    <link rel="stylesheet" href="../CSS/blindfolded.css">
+    <link rel="Shortcut Icon" href="../images/cube.ico">
+</head>
+<body>
+    <div id="main">
+        <div id="nav">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="WCA_describe.html">WCA介绍</a></li>
+                <li><a href="WorldRecord.html">各项记录</a>
+                <li><a>三阶魔方</a>
+                    <ul>
+                        <li><a href="cube3_easy.html">简单层先法</a></li>
+                        <li><a href="cfop.html">CFOP</a></li>
+                        <li><a href="blindfolded.html">三阶盲拧</a></li>
+                    </ul>
+                </li>
+                <li><a>异型魔方</a>
+                    <ul>
+                        <li><a href="cube2.html">二阶</a></li>
+                        <li><a href="pyraminx.html">金字塔</a></li>
+                        <li><a href="skewb.html">斜转</a></li>
+                        <li><a href="megaminx.html">五魔方</a></li>
+                        <li><a href="sq1.html">SQ1</a></li>
+                    </ul>
+                </li>
+                <li><a>高阶魔方<a>
+                    <ul>
+                        <li><a href="cube4.html">四阶</a></li>
+                        <li><a href="cube5.html">五阶</a></li>
+                    </ul>
+                </li>
+                <li><a href="Timer.html" target="_blank">计时器</a></li>
+                <li><a href="#">论坛</a></li> 
+                <input type="button" id="regist" class="bt" value="Register new ID" onclick="window.open('register.html')">         
+                <input type="button" id="sign" class="bt" value="Sign in" onclick="window.open('sign.html')">
+            </ul>  
+        </div>
+       <div id="content">
+           <div id="part1">
+                <fieldset>
+                    <legend>简介</legend>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 盲拧，就是玩家先观察魔方状态并进行记忆，记住后用眼罩蒙住眼睛并快速还原魔方。盲拧的方法也有很多种，比如：四步法，二步法，彳亍法等（我们这里采用的是四步法）。</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 盲拧的计时是从第一眼看到魔方开始的，也就是说记忆魔方的时间也算在总时间内。</p>
+                    <br>
+                </fieldset>
+           </div>
+           <div id="part2">
+            <fieldset>
+                <legend>原理</legend>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以三阶魔方为例，三阶魔方由26块组成，其中6个中心块，8个角块，12个棱块，中心块是相对固定的，在我们记忆及还原过程中，只要始终以其中某一颜色在下，某一颜色在右，记忆及还原过程中就不必再关心6个中心块。</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其它的20个块每一个都存在着位置和方向的问题，只要将这两个问题解决了也就实现了魔方的还原。</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;角块有三种颜色，也就有三种方向：正确、需要顺时针转、需逆时针转。</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;棱块只有两种颜色，也就只有正确和错误两种方向。</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关于位置则很直观的，角块只能和角块交换位置，棱块只能和棱块交换位置。</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过一套固定的编码方法，将这20个块的当前状态进行编码后，实现记忆，随后就可以蒙眼利用公式逐步还原整个魔方了。</p>
+                
+                <br>
+            </fieldset>
+           </div>
+           <div id="part3">
+                <div id="step1"><a href="#">1.建立盲拧坐标系</a></div>
+                <div id="step2"><a href="#">2.调整角块朝向</a></div>
+                <div id="step3"><a href="#">3.调整棱块朝向</a></div>
+                <div id="step4"><a href="#">4.调整棱块顺序</a></div>
+                <div id="step5"><a href="#">5.调整角块顺序</a></div>
+                <div id="step6"><a href="#">6.奇偶校验</a></div>
+           </div>
+       </div>
+    </div>
+</body>
+</html>
