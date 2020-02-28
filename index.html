@@ -3,9 +3,26 @@
     <meta charset="utf-8" />
     <title>My HomePage</title>
   </head>
-  <body align="center">
+  <body>
     <h1>我叫林瑞星</h1>
     <p>我的学号是<span id="studentnumber">19002090117</span></p>
-    <p><img id="logo" src="matrix.jpg" alt="没有图片哟~" /><br /></p>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="jssor.slider.min.js"></script>
+    <link rel="stylesheet" href="my.css" />
+    <script>
+      jQuery(document).ready(function($) {
+        var options = { $AutoPlay: 1 };
+        var jssor1_slider = new $JssorSlider$("jssor_1", options);
+      });
+    </script>
+    <div id="jssor_1">
+      <div
+        data-u="slides"
+        style="position:absolute;top:0px;left:0px;width:980px;height:380px;overflow:hidden;"
+      >
+        <div><img data-u="image" src="1.jpg" /></div>
+        <div><img data-u="image" src="2.jpg" /></div>
+      </div>
+    </div>
   </body>
 </html>
