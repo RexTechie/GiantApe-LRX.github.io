@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <script>
+      function reduce(array, combine, start) {
+        var current = start;
+        for (var element of array) {
+          current = combine(current, element);
+        }
+        return current;
+      }
+      console.log(
+        reduce(
+          [1, 2, 3, 4],
+          function(a, b) {
+            return a + b;
+          },
+          0
+        )
+      );
+    </script>
+  </body>
+</html>
