@@ -8,11 +8,18 @@
         }
         return current;
       }
+      var data = [
+        { name: "计算机安装与维护", credit: 2 },
+        { name: "静态网页制作", credit: 2 },
+        { name: "计算机编程基础", credit: 4 },
+        { name: "大学英语", credit: 2 },
+        { name: "软件技术导论", credit: 2 }
+      ];
       console.log(
         reduce(
-          [1, 2, 3, 4],
-          function(a, b) {
-            return a + b;
+          data,
+          function(total, element) {
+            return total + element.credit;
           },
           0
         )
