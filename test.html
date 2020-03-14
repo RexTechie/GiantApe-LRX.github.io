@@ -12,12 +12,12 @@
         { name: "大学英语", credit: 2 },
         { name: "软件技术导论", credit: 2 }
       ];
-      data.start = {
-        max: _.max(data, function(it) {
+
+      console.log(
+        _.max(data, function(it) {
           return it.credit;
-        }).credit
-      };
-      console.log(data.start.max);
+        })
+      );
     </script>
   </body>
 </html>
