@@ -6,18 +6,20 @@
     <script>
       var value = 11;
       var initvalue = 22;
+      var sum = 0;
+
       function addition() {
         var value = initvalue;
-
         return function add(x) {
           value = value + x;
-          console.log(value);
+          sum = value;
         };
       }
+
       var func = addition();
       func(33);
       func(44);
-
+      console.log(sum);
       /*var outerValue = "samurai";
       var later;
       function outerFunction() {
