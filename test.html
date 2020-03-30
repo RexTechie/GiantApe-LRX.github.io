@@ -4,18 +4,80 @@
     <script src="./stat.js"></script>
 
     <script>
-      var a = 10,
-        fn,
-        bar = function(x) {
-          var b = 5;
-          fn(x + b);
-        };
+      var value = 11;
+      var initvalue = 22;
+      function addition() {
+        var value = initvalue;
 
-      fn = function(y) {
-        var c = 5;
-        console.log(y + c);
-      };
-      bar(10);
+        return function add(x) {
+          value = value + x;
+          console.log(value);
+        };
+      }
+      var func = addition();
+      func(33);
+      func(44);
+
+      /*var outerValue = "samurai";
+      var later;
+      function outerFunction() {
+        var innerValue = "ninja";
+        function innerFunction() {
+          assert(outerValue === "samurai", "i can see the samurai.");
+        }
+        later = innerFunction;
+      }
+      outerFunction();
+      later();*/
+
+      /*function fn() {
+        var max = 10;
+        return function bar(x) {
+          if (x > max) console.log(x);
+        };
+      }
+      var f1 = fn(),
+        max = 100;
+      f1(15);*/
+      /*var a = 10;
+      function fn() {
+        var b = 20;
+        function bar() {
+          console.log(a + b);
+        }
+        return bar;
+      }
+
+      var x = fn(),
+        b = 200;
+      x();*/
+      /*  var x = 10;
+
+      function fn() {
+        console.log(x);
+      }
+
+      function show(f) {
+        var x = 20;
+        (function() {
+          f();
+        })();
+      }
+      show(fn); */
+
+      /*var a = 10,
+        b = 10;
+      function fn() {
+        var a = 100,
+          c = 300;
+        function bar() {
+          var a = 1000,
+            d = 4000;
+        }
+        bar(100);
+        bar(200);
+      }
+      fn(10); */
 
       var reduce = 3;
       var data = [
