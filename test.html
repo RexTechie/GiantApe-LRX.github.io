@@ -10,6 +10,7 @@
 
       function addition() {
         var value = initvalue;
+
         return function add(x) {
           value = value + x;
           sum = value;
@@ -20,6 +21,7 @@
       func(33);
       func(44);
       console.log(sum);
+
       /*var outerValue = "samurai";
       var later;
       function outerFunction() {
