@@ -2,49 +2,20 @@
   <body>
     <script src="./underscore.js"></script>
     <script src="./jquery-3.4.1.js"></script>
-    <script src="./stat.js"></script>
-    <h1 id="header">hello</h1>
+    <ul></ul>
     <script>
-      $(function() {
-        $("h1").click(function() {
-          alert("hello");
-        });
-        $("#header").text($("#header").text() + "正在直播");
-      });
-
-      // var h1 = document.getElementById("header");
-      // h1.innerHTML = h1.innerHTML + "正在直播";
-      var value = 11;
-      var initvalue = prompt("请输入初始值", 22);
-      initvalue = parseInt(initvalue);
-      var sum = 0;
-      function addition() {
-        var value = initvalue;
-        return function add(x) {
-          value = value + x;
-          sum = value;
-        };
-      }
-
-      var func = addition();
-      func(33);
-      func(44);
-      console.log(sum);
-
-      var reduce = 3;
       var data = [
         { name: "计算机安装与维护", credit: 2 },
         { name: "静态网页制作", credit: 2 },
         { name: "计算机编程基础", credit: 4 },
         { name: "大学英语", credit: 2 },
-        { name: "软件技术导论", credit: 2 }
+        { name: "软件技术导论", credit: 2 },
       ];
-
-      console.log(
-        _.max(data, function(it) {
-          return it.credit;
-        })
-      );
+      for (var i = 0; i < data.length; i++) {
+        $("ul").append(
+          "<li>" + data[i].name + "(学分：" + data[i].credit + ")" + "</li>"
+        );
+      }
     </script>
   </body>
 </html>
