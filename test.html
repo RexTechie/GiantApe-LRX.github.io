@@ -11,10 +11,13 @@
         { name: "大学英语", credit: 2 },
         { name: "软件技术导论", credit: 2 },
       ];
-      data.forEach(function (item) {
-        $("ul").append(
-          "<li>" + item.name + "(学分：" + item.credit + ")" + "</li>"
-        );
+
+      $(function () {
+        _.each(data, function (item) {
+          $("ul").append(
+            "<li>" + item.name + "(学分：" + item.credit + ")" + "</li>"
+          );
+        });
       });
     </script>
   </body>
