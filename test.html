@@ -4,19 +4,13 @@
     <script src="./jquery-3.4.1.js"></script>
     <ul></ul>
     <script>
-      var data = [
-        { name: "计算机安装与维护", credit: 2 },
-        { name: "静态网页制作", credit: 2 },
-        { name: "计算机编程基础", credit: 4 },
-        { name: "大学英语", credit: 2 },
-        { name: "软件技术导论", credit: 2 },
-      ];
-
       $(function () {
-        _.each(data, function (item) {
-          $("ul").append(
-            "<li>" + item.name + "(学分：" + item.credit + ")" + "</li>"
-          );
+        $.get("./data.json", function (result) {
+          $.each(result, function (_, item) {
+            $("ul").append(
+              "<li>" + item.name + "(学分：" + item.credit + ")" + "</li>"
+            );
+          });
         });
       });
     </script>
