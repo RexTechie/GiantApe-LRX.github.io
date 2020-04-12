@@ -5,7 +5,7 @@
     <ul></ul>
     <script>
       $(function () {
-        $.get("./data.json", function (result) {
+        $.getJSON("./data.json", function (result) {
           $.each(result, function (_, item) {
             $("ul").append(
               "<li>" + item.name + "(学分：" + item.credit + ")" + "</li>"
