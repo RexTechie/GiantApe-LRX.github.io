@@ -584,7 +584,7 @@ Player.prototype.moveY = function (step, level, keys) {
 };
 Player.prototype.shoot = function (step, level, keys) {
   var dir = (this.lastDir == "left" || this.lastDir == null) ? -1 : 1;
-  var newPos = this.pos.plus(new Vector(dir * this.size.y, 0.5));
+  var newPos = this.pos.plus(new Vector(dir * this.size.y / 16, 0.5));
   if (keys.shoot && level.hasBullet == false) {
     var bullet = new Bullet(newPos, dir);
     level.actors.push(bullet);
@@ -594,8 +594,8 @@ Player.prototype.shoot = function (step, level, keys) {
 
 }
 Player.prototype.act = function (step, level, keys) {
-  this.moveX(step, level, keys);
   this.moveY(step, level, keys);
+  this.moveX(step, level, keys);
   var otherActor = level.actorAt(this);
   if (otherActor) {
     level.playerTouched(otherActor.type, otherActor);//判断是否与其他的障碍物有冲突
@@ -749,20 +749,35 @@ function runLevel(level, passID, unmatched, Display, StatusBar, andThen) {
     level.unmatchedTime = 0x3f3f3f3f3f3f3f;//设置无敌时间为inf
   }
   runAnimation(function (step) {
-    level.animate(step, arrows);//让平台里面的所有活动元素动起来(step是执行的步长，arrows是按键集合)
-    display.drawFrame(step);//更新地图里的信息
-    //更新状态栏中的信息
-    statusBar.run();
-    if (level.isFinished()) {//若游戏结束，清除平台的所有元素
-      if (level.status == "won" && passID == 4) {
+
+    if (statusBar.isStop == false) {
+      addEventListener("keydown", function (event) {
+        if (event.keyCode == 27) {
+          statusBar.isStop = true;
+        }
+      });
+      level.animate(step, arrows);//让平台里面的所有活动元素动起来(step是执行的步长，arrows是按键集合)
+      display.drawFrame(step);//更新地图里的信息
+      //更新状态栏中的信息
+      statusBar.run();
+      if (level.isFinished()) {//若游戏结束，清除平台的所有元素
+        if (level.status == "won" && passID == 4) {
+          return false;
+        }
+        statusBar.wrap.remove();
+        display.clear();
+        if (andThen) {
+          andThen(level.status);//通过andThen来判断是进入下一关还是重新开始
+        }
         return false;
       }
-      statusBar.wrap.remove();
-      display.clear();
-      if (andThen) {
-        andThen(level.status);//通过andThen来判断是进入下一关还是重新开始
-      }
-      return false;
+    } else {
+      addEventListener("keydown", function (event) {
+        if (event.keyCode == 27) {
+          statusBar.isStop = false;
+        }
+      });
+      statusBar.drawStopInfo();
     }
   });
 }

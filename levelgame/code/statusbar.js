@@ -6,7 +6,8 @@ function StatusBar(parent, level, passID) {
     this.passID = passID;
     this.wrap = parent.appendChild(elt("div", "statusBar"));
     this.wrap.style.height = ((level.height * scale > 450) ? 450 : level.height * scale) + "px";
-    this.resultWrap;
+    this.infoWrap;
+    this.isStop = false;
 }
 
 StatusBar.prototype.clear = function () {
@@ -18,7 +19,7 @@ StatusBar.prototype.run = function () {
     } else {
         this.drawDesc();
     }
-    this.drawResult(this.passID);
+    this.drawInfo(this.passID);
 }
 StatusBar.prototype.drawDesc = function () {
     this.clear();
@@ -32,7 +33,7 @@ StatusBar.prototype.drawDesc = function () {
     var tdAltDescLabel = trAltDesc.appendChild(elt("td", "label"));
     var tdAltDesc = trAltDesc.appendChild(elt("td", "content"));
     tdAltDescLabel.innerText = "操作说明:";
-    tdAltDesc.innerHTML = "↑或k：跳跃<br>←或a：人物左移<br>→或d：人物右移<br>空格或j：射击子弹";
+    tdAltDesc.innerHTML = "↑或k：跳跃<br>←或a：人物左移<br>→或d：人物右移<br>空格或j：射击子弹<br>ESC:暂停或重新开始";
     //游戏目标：
     var trGameDesc = table.appendChild(elt("tr"));
     var tdGameDescLabel = trGameDesc.appendChild(elt("td", "label"));
@@ -106,41 +107,51 @@ StatusBar.prototype.showStatus = function (passID) {
     tdGetTime.innerText = this.level.getGameTime();
 }
 
+
+StatusBar.prototype.newInfoWrap = function () {
+    this.infoWrap = this.parent.appendChild(elt("div", "infoWrap"));
+    this.infoWrap.style.height = ((this.level.height * scale > 450) ? 450 : this.level.height * scale) + "px";
+    this.infoWrap.style.width = ((this.level.width * scale > 600) ? 650 : this.level.width * scale) + "px";
+}
 /**
- * 游戏结束时显示玩家的得分情况
+ * 游戏结束时显示游戏信息
  */
 
-//得分计算函数 金币数 + 击败的怪物数 + 消耗的血量
-StatusBar.prototype.drawResult = function (passID) {
-    this.removeResult();
+StatusBar.prototype.drawInfo = function (passID) {
+    this.removeInfo();
     if (this.level.status) {
-        this.resultWrap = this.parent.appendChild(elt("div", "resultWrap"));
-        this.resultWrap.style.height = ((this.level.height * scale > 450) ? 450 : this.level.height * scale) + "px";
-        this.resultWrap.style.width = ((this.level.width * scale > 600) ? 650 : this.level.width * scale) + "px";
-        this.drawResultTable(passID);
+        this.newInfoWrap();
+        this.drawInfoTable(passID);
     }
     if (this.level.isFinished()) {
-        this.removeResult();
+        this.removeInfo();
     }
     if (this.level.isFinished() && passID == 4 && this.level.status == "won") {
-        this.resultWrap = this.parent.appendChild(elt("div", "resultWrap"));
-        this.resultWrap.style.height = ((this.level.height * scale > 450) ? 450 : this.level.height * scale) + "px";
-        this.resultWrap.style.width = ((this.level.width * scale > 600) ? 650 : this.level.width * scale) + "px";
-        this.drawResultTable(passID);
+        this.newInfoWrap();
+        this.drawInfoTable(passID);
         this.drawFinallyResult();
     }
 }
+StatusBar.prototype.drawStopInfo = function () {
+    this.removeInfo();
+    this.newInfoWrap();
+    var stopInfoTable = this.infoWrap.appendChild(elt("table", "stopInfoTable"));
+    //显示关卡
+    var tipTr = stopInfoTable.appendChild(elt("tr"));
+    var tipTd = tipTr.appendChild(elt("td", "tipTd"));
+    tipTd.innerHTML = "游戏暂停中！<br>按ESC键继续游戏";
 
-StatusBar.prototype.removeResult = function () {
-    if (this.resultWrap) {
-        this.parent.removeChild(this.resultWrap);
-        this.resultWrap = null;
+}
+StatusBar.prototype.removeInfo = function () {
+    if (this.infoWrap) {
+        this.parent.removeChild(this.infoWrap);
+        this.infoWrap = null;
     }
 }
 //关卡结束后显示数据
-StatusBar.prototype.drawResultTable = function (passID) {
-    this.resultWrap.innerHTML = ""
-    var resultTable = this.resultWrap.appendChild(elt("table", "resultTable"));
+StatusBar.prototype.drawInfoTable = function (passID) {
+    this.infoWrap.innerHTML = ""
+    var resultTable = this.infoWrap.appendChild(elt("table", "resultTable"));
     //显示关卡
     var tipTr = resultTable.appendChild(elt("tr"));
     var tipTd = tipTr.appendChild(elt("td", "tipTd"));
@@ -181,8 +192,8 @@ StatusBar.prototype.drawResultTable = function (passID) {
 }
 //通过所有关卡后显示的数据
 StatusBar.prototype.drawFinallyResult = function () {
-    this.resultWrap.innerHTML = ""
-    var resultTable = this.resultWrap.appendChild(elt("table", "resultTable"));
+    this.infoWrap.innerHTML = ""
+    var resultTable = this.infoWrap.appendChild(elt("table", "resultTable"));
     //显示关卡
     var tipTr = resultTable.appendChild(elt("tr"));
     var tipTd = tipTr.appendChild(elt("td", "tipTd"));

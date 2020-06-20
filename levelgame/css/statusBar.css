@@ -50,7 +50,7 @@
     height: 40px;
 }
 /*显示最终结果的样式*/
-.resultWrap{
+.infoWrap{
     position: absolute;
     background-color: rgba(0, 0, 0, 0.3);
 }
@@ -61,4 +61,11 @@
 }
 .resultTable tr{
     height: 40px;
+}
+.stopInfoTable{
+    margin-top: 20%;
+    margin-left: 40%;
+    line-height: 50px;
+    font-size: 20px;
+    color: white;
 }
