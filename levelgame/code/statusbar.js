@@ -7,7 +7,7 @@ function StatusBar(parent, level, passID) {
     this.wrap = parent.appendChild(elt("div", "statusBar"));
     this.wrap.style.height = ((level.height * scale > 450) ? 450 : level.height * scale) + "px";
     this.infoWrap;
-    this.isStop = false;
+    // this.isStop = false;
 }
 
 StatusBar.prototype.clear = function () {
@@ -33,7 +33,7 @@ StatusBar.prototype.drawDesc = function () {
     var tdAltDescLabel = trAltDesc.appendChild(elt("td", "label"));
     var tdAltDesc = trAltDesc.appendChild(elt("td", "content"));
     tdAltDescLabel.innerText = "操作说明:";
-    tdAltDesc.innerHTML = "↑或k：跳跃<br>←或a：人物左移<br>→或d：人物右移<br>空格或j：射击子弹<br>ESC:暂停或重新开始";
+    tdAltDesc.innerHTML = "↑或k：跳跃<br>←或a：人物左移<br>→或d：人物右移<br>空格或j：射击子弹<br>";
     //游戏目标：
     var trGameDesc = table.appendChild(elt("tr"));
     var tdGameDescLabel = trGameDesc.appendChild(elt("td", "label"));
@@ -132,16 +132,18 @@ StatusBar.prototype.drawInfo = function (passID) {
         this.drawFinallyResult();
     }
 }
-StatusBar.prototype.drawStopInfo = function () {
-    this.removeInfo();
-    this.newInfoWrap();
-    var stopInfoTable = this.infoWrap.appendChild(elt("table", "stopInfoTable"));
-    //显示关卡
-    var tipTr = stopInfoTable.appendChild(elt("tr"));
-    var tipTd = tipTr.appendChild(elt("td", "tipTd"));
-    tipTd.innerHTML = "游戏暂停中！<br>按ESC键继续游戏";
+//游戏暂停时显示的数据
+//Deprecated
+// StatusBar.prototype.drawStopInfo = function () {
+//     this.removeInfo();
+//     this.newInfoWrap();
+//     var stopInfoTable = this.infoWrap.appendChild(elt("table", "stopInfoTable"));
+//     //显示关卡
+//     var tipTr = stopInfoTable.appendChild(elt("tr"));
+//     var tipTd = tipTr.appendChild(elt("td", "tipTd"));
+//     tipTd.innerHTML = "游戏暂停中！<br>按ESC键继续游戏";
 
-}
+// }
 StatusBar.prototype.removeInfo = function () {
     if (this.infoWrap) {
         this.parent.removeChild(this.infoWrap);

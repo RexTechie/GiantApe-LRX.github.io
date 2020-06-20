@@ -749,35 +749,20 @@ function runLevel(level, passID, unmatched, Display, StatusBar, andThen) {
     level.unmatchedTime = 0x3f3f3f3f3f3f3f;//设置无敌时间为inf
   }
   runAnimation(function (step) {
-
-    if (statusBar.isStop == false) {
-      addEventListener("keydown", function (event) {
-        if (event.keyCode == 27) {
-          statusBar.isStop = true;
-        }
-      });
-      level.animate(step, arrows);//让平台里面的所有活动元素动起来(step是执行的步长，arrows是按键集合)
-      display.drawFrame(step);//更新地图里的信息
-      //更新状态栏中的信息
-      statusBar.run();
-      if (level.isFinished()) {//若游戏结束，清除平台的所有元素
-        if (level.status == "won" && passID == 4) {
-          return false;
-        }
-        statusBar.wrap.remove();
-        display.clear();
-        if (andThen) {
-          andThen(level.status);//通过andThen来判断是进入下一关还是重新开始
-        }
+    level.animate(step, arrows);//让平台里面的所有活动元素动起来(step是执行的步长，arrows是按键集合)
+    display.drawFrame(step);//更新地图里的信息
+    //更新状态栏中的信息
+    statusBar.run();
+    if (level.isFinished()) {//若游戏结束，清除平台的所有元素
+      if (level.status == "won" && passID == 4) {
         return false;
       }
-    } else {
-      addEventListener("keydown", function (event) {
-        if (event.keyCode == 27) {
-          statusBar.isStop = false;
-        }
-      });
-      statusBar.drawStopInfo();
+      statusBar.wrap.remove();
+      display.clear();
+      if (andThen) {
+        andThen(level.status);//通过andThen来判断是进入下一关还是重新开始
+      }
+      return false;
     }
   });
 }
