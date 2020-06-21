@@ -39,13 +39,19 @@ StatusBar.prototype.drawDesc = function () {
     var tdGameDescLabel = trGameDesc.appendChild(elt("td", "label"));
     var tdGameDesc = trGameDesc.appendChild(elt("td", "content"));
     tdGameDescLabel.innerText = "游戏目标:";
-    tdGameDesc.innerHTML = "合理操作，得到披风，顺利闯关";
+    tdGameDesc.innerHTML = "合理操作，收集能量球，击败史莱姆，得到盔甲，顺利闯关";
     //其他说明:
     var trOtherDesc = table.appendChild(elt("tr"));
     var tdOtherDescLabel = trOtherDesc.appendChild(elt("td", "label"));
     var tdOtherDesc = trOtherDesc.appendChild(elt("td", "content"));
     tdOtherDescLabel.innerText = "其他说明:";
-    tdOtherDesc.innerHTML = "1.玩家一开始有三格血量，能量若为0则游戏结束<br><br>2.若玩家触碰到了熔岩则减少一点血量<br><br>3.若玩家掉到水下或掉出地图则血量减少至0<br><br>";
+    tdOtherDesc.innerHTML =
+        "1.玩家每关有三点血量<br>" +
+        "2.若玩家触碰到了火焰/史莱姆/躲避球，则减少一点血量<br>" +
+        "3.减少一点血量后玩家会进入短暂的无敌模式<br>" +
+        "4.无敌模式下可以免疫火焰/史莱姆/躲避球的伤害<br>" +
+        "5.若玩家陷入暗河中或掉出地图则血量变为0<br>" +
+        "6.每个史莱姆可以承三次子弹的攻击<br>";
     tableDiv.appendChild(table);
 }
 
