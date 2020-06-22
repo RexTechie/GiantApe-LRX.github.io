@@ -41,7 +41,7 @@
     /*外观设计*/
     border-radius: 20px;
     border: 1px solid blue;
-    background: rgba(100, 200, 250, 50%);
+    background-color: rgba(100, 200, 250, 0.5);
     box-shadow: 1px 8px  20px rgba(0, 0, 0, 0.4);
 }
 #show .bt:hover{
