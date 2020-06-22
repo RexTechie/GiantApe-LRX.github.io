@@ -74,12 +74,13 @@ StatusBar.prototype.showStatus = function (passID) {
     /**
      * 获取剩余血量
      */
+    var hp = this.level.hp < 0 ? 0 : this.level.hp;
     var trHP = statusTable.appendChild(elt("tr"));
     var tdHPLabel = trHP.appendChild(elt("td", "statusLabel"));
     tdHPLabel.innerText = "血量：";
     var tdHPContent = trHP.appendChild(elt("td"));
-    for (var i = 0; i < this.level.hp; i++) {
-        tdHPContent.innerText += "❤";
+    for (var i = 0; i < hp; i++) {
+        tdHPContent.innerHTML += "<img src='../img/hp.png'>&nbsp;";
     }
 
     /**
