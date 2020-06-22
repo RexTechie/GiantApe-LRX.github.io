@@ -97,5 +97,4 @@ DOMDisplay.prototype.scrollPlayerIntoView = function () {
  */
 DOMDisplay.prototype.clear = function () {
     this.wrap.parentNode.removeChild(this.wrap);
-    this.statusBar.wrap.remove();
 };

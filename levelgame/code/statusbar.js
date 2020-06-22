@@ -10,6 +10,11 @@ function StatusBar(parent, level, passID) {
     // this.isStop = false;
 }
 
+StatusBar.prototype.removeWrap = function (wrap) {
+    if (wrap) {
+        wrap.parentNode.removeChild(wrap);
+    }
+}
 StatusBar.prototype.clear = function () {
     this.wrap.innerHTML = "";
 }
@@ -152,7 +157,7 @@ StatusBar.prototype.drawInfo = function (passID) {
 // }
 StatusBar.prototype.removeInfo = function () {
     if (this.infoWrap) {
-        this.parent.removeChild(this.infoWrap);
+        this.removeWrap(this.infoWrap);
         this.infoWrap = null;
     }
 }

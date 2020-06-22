@@ -118,10 +118,13 @@ CanvasDisplay.prototype.drawPlayer = function (x, y, width, height) {
   this.cx.save();
   if (this.flipPlayer)
     flipHorizontally(this.cx, x + width / 2);
-
-  this.cx.drawImage((this.level.unmatched ? unmatchedPlayerSprites : playerSprites),
-    sprite * width, 0, width, height,
-    x, y, width, height);
+  try {
+    this.cx.drawImage((this.level.unmatched ? unmatchedPlayerSprites : playerSprites),
+      sprite * width, 0, width, height,
+      x, y, width, height);
+  } catch (error) {
+    console.log(error);
+  }
   this.cx.restore();
 };
 
@@ -174,9 +177,13 @@ CanvasDisplay.prototype.drawActors = function () {
       } else {
         tileX = 3 * scale;
       }
-      this.cx.drawImage(otherSprites,
-        tileX, 0, width, height,
-        x, y, width, height);
+      try {
+        this.cx.drawImage(otherSprites,
+          tileX, 0, width, height,
+          x, y, width, height);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }, this);
 };

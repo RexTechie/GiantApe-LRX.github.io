@@ -757,7 +757,7 @@ function runLevel(level, passID, unmatched, Display, StatusBar, andThen) {
       if (level.status == "won" && passID == 4) {
         return false;
       }
-      statusBar.wrap.remove();
+      statusBar.removeWrap(statusBar.wrap);
       display.clear();
       if (andThen) {
         andThen(level.status);//通过andThen来判断是进入下一关还是重新开始
