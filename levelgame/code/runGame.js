@@ -674,6 +674,16 @@ Level.prototype.playerTouched = function (type, actor) {
 
 
 
+/**
+ * 创建DOM元素对象
+ * @param {指定的DOM元素名} name 
+ * @param {指定的DOM元素的className} className 
+ */
+function elt(name, className) {
+  var elt = document.createElement(name);
+  if (className) elt.className = className;
+  return elt;
+}
 
 
 

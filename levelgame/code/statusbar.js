@@ -78,9 +78,9 @@ StatusBar.prototype.showStatus = function (passID) {
     var trHP = statusTable.appendChild(elt("tr"));
     var tdHPLabel = trHP.appendChild(elt("td", "statusLabel"));
     tdHPLabel.innerText = "血量：";
-    var tdHPContent = trHP.appendChild(elt("td"));
+    var tdHPContent = trHP.appendChild(elt("td", "hp"));
     for (var i = 0; i < hp; i++) {
-        tdHPContent.innerHTML += "<img src='../img/hp.png'>&nbsp;";
+        tdHPContent.innerHTML += "❤";
     }
 
     /**

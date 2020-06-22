@@ -51,6 +51,9 @@
 .statusTabel tr{
     height: 40px;
 }
+.hp{
+    color: red;
+}
 /*显示最终结果的样式*/
 .infoWrap{
     position: absolute;
