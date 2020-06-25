@@ -13,9 +13,10 @@ $(function(){
     $("#login").click(function(){
         $.ajax({
             method:"POST"
-            ,url:"http://localhost:8585/login", 
-            data:JSON.stringify({username:$("#username").val(),password:$("#password").val()})
-            ,crossDomain: true
+            ,url:"http://localhost:8585/login"
+            ,data:"username="+$("#username").val()+"&password="+$("#password").val()
+           //,contentType:"application/JSON"
+           //,data:JSON.stringify({username:$("#username").val(),password:$("#password").val()})
             ,xhrFields: {
                 withCredentials: true
             }

@@ -1,42 +1,53 @@
 <html>
+    <body>
+       <ul>
 
-<body>
-  <script src="./underscore.js"></script>
-  <script src="./jquery-3.4.1.js"></script>
-  <ul></ul>
+       </ul>
+        <script src="jquery-3.4.1.js"></script>
+        <script src="underscore.js"></script>
 
-  <input id="coursename" />
-  <button id="btn">显示学分</button>
-  <div id="divcredit"></div>
-  <script>
-    $(function () {
-      $.get("http://localhost:8585/data.json", function (result) {
-        $.each(result, function (_, item) {
-          $("ul").append(
-            "<li>" + item.name + "(学分：" + item.credit + ")" + "</li>"
-          );
-        });
-      });
-    });
-    $("#btn").click(function () {
-      $.ajax({
-        type: "GET",
-        contentType: "application/json",
-        url: "http://localhost:8585/creditByName",
-        data: "name=" + $("#coursename").val(),
-        success: function (data) {
-          $("#divcredit").text(data);
+        <input id="coursename" />
+        <button id="btn">显示学分</button>
+        <div id="divcredit"></div>
+
+    <script>
+
+
+$(function(){
+
+    $.ajax({method:"POST"
+        ,url:"http://localhost:8585/data.json"
+        ,crossDomain: true
+        ,xhrFields: {
+                withCredentials: true
         }
-      });
+        ,success:function(data){
+   // $.post("http://localhost:8585/data.json", function(data){
+            _.each(data, function(item){
+             $("ul").append("<li>"+item.name+"(学分："+item.credit+")"+"</li>");
+            });
+        }
+    });
 
-      // $.post("http://localhost:8585/creditByName"
-      //   , { name: $("#coursename").val() }
-      //   , function (data) {
-      //     $("#divcredit").text(data);
-      //   });
+    $("#btn").click(function(){
+        $.ajax({method:"POST"
+            ,contentType:"application/json"
+            ,crossDomain: true
+            ,xhrFields: {
+                withCredentials: true
+            }
+            ,url:"http://localhost:8585/creditByName"
+            ,data:JSON.stringify({name:$("#coursename").val()})
+            ,success:function(data){
+                $("#divcredit").text(data);
+            }
+        });
     })
+          
+});
 
-  </script>
-</body>
+    </script>
 
+
+    </body>
 </html>
