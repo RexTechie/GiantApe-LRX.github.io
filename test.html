@@ -1,53 +1,71 @@
 <html>
-    <body>
-       <ul>
 
-       </ul>
-        <script src="jquery-3.4.1.js"></script>
-        <script src="underscore.js"></script>
+<body>
+    <ul>
 
-        <input id="coursename" />
-        <button id="btn">显示学分</button>
-        <div id="divcredit"></div>
+    </ul>
+    <script src="jquery-3.4.1.js"></script>
+    <script src="underscore.js"></script>
+
+    <input id="coursename" />
+    <button id="btn">显示学分</button>
+    <div id="divcredit"></div>
+    <button id="btnlogout">退出</button>
 
     <script>
 
 
-$(function(){
+        $(function () {
 
-    $.ajax({method:"POST"
-        ,url:"http://localhost:8585/data.json"
-        ,crossDomain: true
-        ,xhrFields: {
-                withCredentials: true
-        }
-        ,success:function(data){
-   // $.post("http://localhost:8585/data.json", function(data){
-            _.each(data, function(item){
-             $("ul").append("<li>"+item.name+"(学分："+item.credit+")"+"</li>");
+            $.ajax({
+                method: "POST"
+                , url: "http://localhost:8585/data.json"
+                , crossDomain: true
+                , xhrFields: {
+                    withCredentials: true
+                }
+                , success: function (data) {
+                    // $.post("http://localhost:8585/data.json", function(data){
+                    _.each(data, function (item) {
+                        $("ul").append("<li>" + item.name + "(学分：" + item.credit + ")" + "</li>");
+                    });
+                }
             });
-        }
-    });
 
-    $("#btn").click(function(){
-        $.ajax({method:"POST"
-            ,contentType:"application/json"
-            ,crossDomain: true
-            ,xhrFields: {
-                withCredentials: true
-            }
-            ,url:"http://localhost:8585/creditByName"
-            ,data:JSON.stringify({name:$("#coursename").val()})
-            ,success:function(data){
-                $("#divcredit").text(data);
-            }
+            $("#btnlogout").click(function () {
+                $.ajax({
+                    method: "GET"
+                    , xhrFields: {
+                        withCredentials: true
+                    }
+                    , url: "http://localhost:8585/logout"
+                    , success: function (data) {
+                        console.log(data);
+                        window.location.href = "./login.html";
+                    }
+                })
+            });
+            $("#btn").click(function () {
+                $.ajax({
+                    method: "POST"
+                    , contentType: "application/json"
+                    , crossDomain: true
+                    , xhrFields: {
+                        withCredentials: true
+                    }
+                    , url: "http://localhost:8585/creditByName"
+                    , data: JSON.stringify({ name: $("#coursename").val() })
+                    , success: function (data) {
+                        $("#divcredit").text(data);
+                    }
+                });
+            })
+
         });
-    })
-          
-});
 
     </script>
 
 
-    </body>
+</body>
+
 </html>
